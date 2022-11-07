@@ -15,7 +15,8 @@ defmodule Noncegeek.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Noncegeek.PubSub},
       # Start the Endpoint (http/https)
-      NoncegeekWeb.Endpoint
+      NoncegeekWeb.Endpoint,
+      {AptosEx, Application.fetch_env!(:noncegeek, AptosEx)}
       # Start a worker by calling: Noncegeek.Worker.start_link(arg)
       # {Noncegeek.Worker, arg}
     ]
