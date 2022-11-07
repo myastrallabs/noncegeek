@@ -9,7 +9,6 @@ defmodule Noncegeek.Explorer.Model.Token do
   schema "tokens" do
     # required
     field :token_id, :map
-    field :collection_id, :map
     field :collection_name, :string
     field :creator, :string
     field :name, :string
@@ -25,9 +24,6 @@ defmodule Noncegeek.Explorer.Model.Token do
     field :uri, :string
     field :property_version, :integer
 
-    # fetcher
-    field :last_fetched_at, :utc_datetime_usec
-
     timestamps()
   end
 
@@ -42,7 +38,6 @@ defmodule Noncegeek.Explorer.Model.Token do
     )a
 
     optional_fields = ~w(
-      last_fetched_at
       maximum
       largest_property_version
       mutability_config
@@ -69,7 +64,5 @@ defmodule Noncegeek.Explorer.Model.Token do
     token
     |> cast(attrs, required_fields)
     |> validate_required(required_fields)
-    |> NameSlug.maybe_generate_slug()
-    |> NameSlug.unique_constraint()
   end
 end

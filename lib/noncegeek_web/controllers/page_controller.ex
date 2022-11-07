@@ -5,3 +5,5 @@ defmodule NoncegeekWeb.PageController do
     render(conn, "index.html")
   end
 end
+
+# File.write!("priv/static/images/1.jpg", body)

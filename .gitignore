@@ -20,11 +20,13 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-noncegeek-*.tar
+Noncegeek-*.tar
 
 # Ignore assets that are produced by build tools.
-/priv/static/assets/
-/priv/static/images/
+# Ignore assets that are produced by build tools.
+/priv/static/uploads/*
+/priv/static/assets/*
+/priv/static/images/*
 
 # Ignore digested assets cache.
 /priv/static/cache_manifest.json
