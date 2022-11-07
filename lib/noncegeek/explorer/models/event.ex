@@ -19,7 +19,7 @@ defmodule Noncegeek.Explorer.Model.Event do
     field :amount, :decimal
     field :data, :map
 
-    belongs_to :token, Lotus.Explorer.Model.Token,
+    belongs_to :token, Noncegeek.Explorer.Model.Token,
       foreign_key: :token_id,
       references: :token_id,
       type: :map

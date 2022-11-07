@@ -16,9 +16,8 @@ defmodule Noncegeek.Application do
       {Phoenix.PubSub, name: Noncegeek.PubSub},
       # Start the Endpoint (http/https)
       NoncegeekWeb.Endpoint,
+      {Oban, Application.fetch_env!(:noncegeek, Oban)},
       {AptosEx, Application.fetch_env!(:noncegeek, AptosEx)}
-      # Start a worker by calling: Noncegeek.Worker.start_link(arg)
-      # {Noncegeek.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
