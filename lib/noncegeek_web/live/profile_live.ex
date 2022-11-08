@@ -20,7 +20,8 @@ defmodule NoncegeekWeb.ProfileLive do
 
   def apply_action(socket, :index, _params) do
     %{assigns: %{current_user: %{address: address}}} = socket
-    # Explorer.refresh_account_events(address)
+
+    Explorer.refresh_account_events(address)
 
     with {:ok, entries} <- Explorer.list_account_tokens(address) do
       socket

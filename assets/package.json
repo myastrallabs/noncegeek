@@ -20,7 +20,6 @@
     "eslint-plugin-standard": "^4.0.1"
   },
   "dependencies": {
-    "flowbite": "^1.5.3",
-    "shufflejs": "^6.1.0"
+    "flowbite": "^1.5.3"
   }
 }
