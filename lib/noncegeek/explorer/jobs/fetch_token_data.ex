@@ -33,7 +33,7 @@ defmodule Noncegeek.Explorer.Job.FetchTokenData do
     file_path = "priv/static/images/#{unique_num}.jpg"
 
     if !File.exists?(file_path) do
-      {:ok, %{body: body}} = Faker.Avatar.image_url("phoenix", 540, 540) |> Tesla.get()
+      {:ok, %{body: body}} = Faker.Avatar.image_url(540, 540) |> Tesla.get()
       File.write!(file_path, body)
     end
   end

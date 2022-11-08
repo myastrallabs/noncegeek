@@ -62,6 +62,7 @@ export const Wallet = {
       try {
         const result = await wallet.signAndSubmitTransaction(payload)
         console.log('result:', result)
+        this.pushEvent('mint_succeed', { hash: result.hash })
       } catch (error) {
         console.log('Error List token:', error)
       } finally {

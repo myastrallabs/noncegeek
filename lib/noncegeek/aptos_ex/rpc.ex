@@ -67,10 +67,10 @@ defmodule AptosEx.RPC do
 
   def check_transaction_by_hash(client, hash, times \\ 3) do
     case get_transaction_by_hash(client, hash) do
-      {:ok, result} ->
-        result.success
+      {:ok, %{success: true} = _result} ->
+        true
 
-      {:error, _} ->
+      _ ->
         if times > 0 do
           Process.sleep(1000)
           check_transaction_by_hash(client, hash, times - 1)

@@ -17,7 +17,8 @@ defmodule Noncegeek.Application do
       # Start the Endpoint (http/https)
       NoncegeekWeb.Endpoint,
       {Oban, Application.fetch_env!(:noncegeek, Oban)},
-      {AptosEx, Application.fetch_env!(:noncegeek, AptosEx)}
+      {AptosEx, Application.fetch_env!(:noncegeek, AptosEx)},
+      Noncegeek.Fetcher.Supervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

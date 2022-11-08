@@ -25,6 +25,25 @@ defmodule NoncegeekWeb.PageLive do
   end
 
   @impl true
+  def handle_event("mint_succeed", %{"hash" => hash}, socket) do
+    with true <- AptosEx.check_transaction_by_hash(hash) do
+      msg =
+        raw(
+          "Mint token succeed: <a href='https://explorer.aptoslabs.com/txn/#{hash}?network=testnet' target='_blank' class='font-semibold underline hover:text-blue-800 dark:hover:text-blue-900'>#{hash}</a>. Give it a click if you like."
+        )
+
+      {:noreply,
+       socket
+       |> put_flash(:info, msg)}
+    else
+      _ ->
+        {:noreply,
+         socket
+         |> put_flash(:error, "Mint token failed.")}
+    end
+  end
+
+  @impl true
   def render(assigns) do
     ~H"""
     <section id="page" class="relative md:pt-48 pt-36 overflow-hidden" phx-hook="Wallet">
