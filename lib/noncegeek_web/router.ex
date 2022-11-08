@@ -24,7 +24,7 @@ defmodule NoncegeekWeb.Router do
 
     live "/", PageLive, :index
 
-    get "/explorer", PageController, :explorer
+    live "/explorer", ExplorerLive, :index
   end
 
   scope "/", NoncegeekWeb do

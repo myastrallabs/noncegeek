@@ -25,17 +25,17 @@ defmodule NoncegeekWeb.WalletLive do
   end
 
   @impl true
-  def handle_event("connect-petra", _, socket) do
+  def handle_event("connect_petra", _, socket) do
     {:noreply, push_event(socket, "connect-petra", %{})}
   end
 
   @impl true
-  def handle_event("connect-martian", _, socket) do
+  def handle_event("connect_martian", _, socket) do
     {:noreply, push_event(socket, "connect-martian", %{})}
   end
 
   @impl true
-  def handle_event("connect-starmask", _, socket) do
+  def handle_event("connect_starmask", _, socket) do
     {:noreply, push_event(socket, "connect-starmask", %{})}
   end
 
@@ -47,8 +47,12 @@ defmodule NoncegeekWeb.WalletLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div id={@id} phx-hook="Wallet" >
-      <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" phx-click="connect-petra">Connect Petra</button>
+    <div id={@id} phx-hook="Wallet" class="space-y-2 flex flex-col m-2 justify-center ">
+      <h5 class="font-bold text-lg text-center p-2">Collect Wallet</h5>
+
+      <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" phx-click="connect_petra">Connect Petra</button>
+      <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" phx-click="connect_martian">Connect Martian</button>
+      <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" phx-click="connect_starmask">Connect Starmask</button>
     </div>
     """
   end

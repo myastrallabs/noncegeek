@@ -1,0 +1,71 @@
+defmodule NoncegeekWeb.ExplorerLive do
+  @moduledoc false
+
+  use NoncegeekWeb, :live_view
+
+  alias Noncegeek.Explorer
+
+  @impl true
+  def mount(_, session, socket) do
+    {:ok,
+     socket
+     |> assign_new(:current_user, fn -> Map.get(session, "current_user") end)}
+  end
+
+  @impl true
+  def handle_params(params, _url, socket) do
+    {:noreply, apply_action(socket, socket.assigns.live_action, params)}
+  end
+
+  def apply_action(socket, :index, _params) do
+    {:ok, entries} = Explorer.paged_tokens()
+
+    socket
+    |> assign(entries: entries)
+  end
+
+  @impl true
+  def render(assigns) do
+    ~H"""
+     <section class="relative table w-full py-36 bg-bottom bg-no-repeat">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900"></div>
+        <div class="container">
+          <div class="grid grid-cols-1 pb-8 text-center mt-10">
+            <h3 class="md:text-3xl text-2xl md:leading-snug tracking-wide leading-snug font-medium text-white">Explorer </h3>
+          </div>
+        </div>
+
+      </section>
+      <div class="relative">
+        <div
+          class="shape absolute right-0 sm:-bottom-px -bottom-[2px] left-0 overflow-hidden z-1 text-white dark:text-slate-900">
+          <svg class="w-full h-auto" viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+          </svg>
+        </div>
+      </div>
+
+      <section class="m-4">
+      <div class="grid lg:grid-cols-6 grid-cols-1 gap-[30px] mt-2">
+        <%= for entry <- @entries do %>
+        <div
+          class="group relative p-2 rounded-lg bg-white dark:bg-slate-900 border border-gray-100 dark:border-gray-800 hover:shadow-md dark:shadow-md hover:dark:shadow-gray-700 transition-all duration-500 h-fit">
+          <div class="relative overflow-hidden">
+            <div class="relative overflow-hidden rounded-lg">
+              <img src={entry.uri}
+                class="rounded-lg shadow-md dark:shadow-gray-700 group-hover:scale-110 transition-all duration-500"
+                alt="">
+            </div>
+          </div>
+
+            <div class="my-3">
+              <span class="font-semibold hover:text-violet-600"><%= entry.name %></span>
+            </div>
+        </div>
+        <% end %>
+      </div>
+      </section>
+
+    """
+  end
+end
