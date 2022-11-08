@@ -12,11 +12,17 @@ defmodule Noncegeek.Explorer do
   alias Noncegeek.Explorer.Model.{Token, Event}
   alias Noncegeek.{Repo, Turbo}
 
+  @contract_creator Application.get_env(:noncegeek, :contract_creator)
+
   @doc """
   Paged tokens
   """
   def paged_tokens() do
-    Turbo.all(Token)
+    from(
+      t in Token,
+      where: t.creator == @contract_creator
+    )
+    |> Turbo.all()
   end
 
   @doc """

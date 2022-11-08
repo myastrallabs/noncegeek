@@ -17,7 +17,7 @@ defmodule Noncegeek.Repo.Migrations.CreateEvents do
       timestamps()
     end
 
-    create unique_index(:events, [:sequence_number, :type])
+    create unique_index(:events, [:sequence_number, :type, :account_address])
 
     create index(:events, [:token_id])
     create index(:events, [:account_address])

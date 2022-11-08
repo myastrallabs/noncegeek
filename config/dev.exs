@@ -25,6 +25,7 @@ config :noncegeek, NoncegeekWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "/NXHEXBTiQmR0DsHSVj8eEkPoE92Ss+c79+uWhIrspPdZ7EgAr4zVGY9HonH+zI/",
   watchers: [
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]},
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
   ]

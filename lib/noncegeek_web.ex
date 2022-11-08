@@ -98,6 +98,9 @@ defmodule NoncegeekWeb do
       import NoncegeekWeb.ErrorHelpers
       import NoncegeekWeb.Gettext
       alias NoncegeekWeb.Router.Helpers, as: Routes
+
+      import NoncegeekWeb.Helpers
+      import NoncegeekWeb.LiveHelpers
     end
   end
 

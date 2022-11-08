@@ -15,7 +15,6 @@ defmodule Noncegeek.Explorer.Job.FetchTokenData do
     %{"token_data_id" => %{"creator" => creator, "collection" => collection_name, "name" => name}} = token_id
 
     with {:ok, token} <- Explorer.fetch_token_data(creator, collection_name, name) do
-      IO.inspect(token, label: "token")
       create_nft_image(token)
       :ok
     else
@@ -25,8 +24,6 @@ defmodule Noncegeek.Explorer.Job.FetchTokenData do
   end
 
   defp create_nft_image(%{collection_name: unquote(@collection_name), creator: unquote(@contract_creator), name: name} = _token) do
-    IO.inspect("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-
     unique_num =
       name
       |> String.split(":")
@@ -36,7 +33,7 @@ defmodule Noncegeek.Explorer.Job.FetchTokenData do
     file_path = "priv/static/images/#{unique_num}.jpg"
 
     if !File.exists?(file_path) do
-      {:ok, %{body: body}} = Faker.Avatar.image_url() |> Tesla.get()
+      {:ok, %{body: body}} = Faker.Avatar.image_url("phoenix", 540, 540) |> Tesla.get()
       File.write!(file_path, body)
     end
   end

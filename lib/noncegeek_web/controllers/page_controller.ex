@@ -1,9 +1,12 @@
 defmodule NoncegeekWeb.PageController do
+  @moduledoc false
+
   use NoncegeekWeb, :controller
 
-  def index(conn, _params) do
-    render(conn, "index.html")
+  alias Noncegeek.Explorer
+
+  def explorer(conn, _params) do
+    {:ok, entries} = Explorer.paged_tokens()
+    render(conn, :explorer, entries: entries)
   end
 end
-
-# File.write!("priv/static/images/1.jpg", body)

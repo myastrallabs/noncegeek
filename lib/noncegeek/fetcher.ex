@@ -22,7 +22,7 @@ defmodule Noncegeek.Fetcher do
   end
 
   @doc """
-  iex> Noncegeek.Fetcher.task(%{sequence_number: 0, account: "0xe698622471b41a92e13ae893ae4ff88b20c528f6da2bedcb24d74646bf972dc3", event_handle: "0xe698622471b41a92e13ae893ae4ff88b20c528f6da2bedcb24d74646bf972dc3::LEAF::MintData", field: "mint_events"})
+  iex> Noncegeek.Fetcher.task(%{sequence_number: 0, account: "0x8444b675957431eea8ba816a2653bc5454427959fc0eecca55de814009b9be81", event_handle: "0x8444b675957431eea8ba816a2653bc5454427959fc0eecca55de814009b9be81::LEAF::MintData", field: "mint_events"})
 
   """
   def task(%{sequence_number: sequence_number} = task_data) do

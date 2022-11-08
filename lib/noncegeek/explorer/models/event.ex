@@ -14,15 +14,10 @@ defmodule Noncegeek.Explorer.Model.Event do
     field :creation_number, :integer
     field :version, :integer
 
-    # field :token_id, :map
-    # field :collection_id, :map
     field :amount, :decimal
     field :data, :map
 
-    belongs_to :token, Noncegeek.Explorer.Model.Token,
-      foreign_key: :token_id,
-      references: :token_id,
-      type: :map
+    belongs_to :token, Noncegeek.Explorer.Model.Token, foreign_key: :token_id, references: :token_id, type: :map
 
     timestamps()
   end

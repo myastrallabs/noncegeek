@@ -33,7 +33,7 @@ config :swoosh, :api_client, false
 config :esbuild,
   version: "0.14.29",
   default: [
-    args: ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+    args: ~w(js/app.js js/plugins.init.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
@@ -46,6 +46,17 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :tailwind,
+  version: "3.2.1",
+  default: [
+    args: ~w(
+    --config=tailwind.config.js
+    --input=css/app.css
+    --output=../priv/static/assets/app.css
+  ),
+    cd: Path.expand("../assets", __DIR__)
+  ]
+
 config :noncegeek, Oban,
   repo: Noncegeek.Repo,
   plugins: [{Oban.Plugins.Pruner, max_age: 3 * 24 * 60 * 60}],
@@ -54,8 +65,8 @@ config :noncegeek, Oban,
 config :noncegeek, AptosEx, rpc_endpoint: "https://testnet.aptoslabs.com/v1"
 
 config :noncegeek,
-  contract_address: "0xe698622471b41a92e13ae893ae4ff88b20c528f6da2bedcb24d74646bf972dc3",
-  contract_creator: "0xe10e40298c16778e71a03fa7e00e7d29e12a77b5e1797b799034551401cc0cc4",
+  contract_address: "0x8444b675957431eea8ba816a2653bc5454427959fc0eecca55de814009b9be81",
+  contract_creator: "0x75b12ae0fc6ee562a3dd0a153002152907c137eb9b9b514084d0897ea3fc9617",
   collection_name: "NonceGeek Leaf"
 
 # Import environment specific config. This must remain at the bottom

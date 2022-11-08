@@ -31,7 +31,7 @@ defmodule Noncegeek.Import.Runner.Events do
       Import.insert_changes_list(
         repo,
         changes_list,
-        conflict_target: [:type, :sequence_number],
+        conflict_target: [:type, :sequence_number, :account_address],
         on_conflict: :nothing,
         for: Event,
         returning: true,

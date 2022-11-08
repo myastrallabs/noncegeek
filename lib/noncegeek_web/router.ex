@@ -1,6 +1,8 @@
 defmodule NoncegeekWeb.Router do
   use NoncegeekWeb, :router
 
+  import NoncegeekWeb.UserAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +10,7 @@ defmodule NoncegeekWeb.Router do
     plug :put_root_layout, {NoncegeekWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_user
   end
 
   pipeline :api do
@@ -17,7 +20,18 @@ defmodule NoncegeekWeb.Router do
   scope "/", NoncegeekWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    post "/auth", SessionController, :create
+
+    live "/", PageLive, :index
+
+    get "/explorer", PageController, :explorer
+  end
+
+  scope "/", NoncegeekWeb do
+    pipe_through ~w(browser require_authenticated_user)a
+
+    post "/logout", SessionController, :delete
+    live "/profile", ProfileLive, :index
   end
 
   # Other scopes may use custom stacks.
